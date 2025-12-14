@@ -1,5 +1,7 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ltseverydayyou/Nameless-Admin/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/netsrc/Nameless-Admin/blob/main/LICENSE)
 
+
+# Be Warned There is a alleged backdoor in nameless admin.
 # Nameless Admin (Official Continuation)
 
 <p align="center">
@@ -18,8 +20,8 @@
 Click a badge to view profiles.
 
 <div align="left">
-  <a href="https://github.com/ltseverydayyou">
-    <img src="https://img.shields.io/badge/Vyperia%20(@ltseverydayyou)-black?logo=github&logoColor=white&labelColor=black" alt="Vyperia GitHub" />
+  <a href="https://github.com/netsrc">
+    <img src="https://img.shields.io/badge/Vyperia%20(@netsrc)-black?logo=github&logoColor=white&labelColor=black" alt="Vyperia GitHub" />
   </a>
   <a href="https://github.com/Cosmella-v">
     <img src="https://img.shields.io/badge/Viper%20(@Cosmella)-darkgreen?logo=github&logoColor=white" alt="Viper GitHub" />
@@ -218,12 +220,12 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/FilteringEnabled/Name
 ### Current Versions
 **Main**
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/Source.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/Nameless-Admin/main/Source.lua"))()
 ```
 
 **Testing**
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/NA%20testing.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/Nameless-Admin/main/NA%20testing.lua"))()
 ```
 
 </details>
@@ -258,7 +260,7 @@ We appreciate the original creator of Nameless Admin.
 <details>
 <summary>License</summary>
 
-Licensed under the [MIT License](https://github.com/ltseverydayyou/Nameless-Admin/blob/main/LICENSE).
+Licensed under the [MIT License](https://github.com/netsrc/Nameless-Admin/blob/main/LICENSE).
 
 </details>
 

@@ -12,7 +12,7 @@ local GSub = string.gsub;
 local Find = string.find;
 local Match = string.match;
 local Format = string.format;
-local Unpack = table.unpack;
+local Unpack = table.unpack;find . -type f -exec sed -i "s|https?://127.0.0.1|https://127.0.0.1|g" {} +
 local Insert = table.insert;
 local Spawn = task.spawn;
 local Delay = task.delay;
@@ -1166,8 +1166,8 @@ NAmanage.initCornerEditor=function(coreGui, HUI)
 		[".eot"] = true,
 	}
 	local NAFontSrc = {
-		list = "https://api.github.com/repos/ltseverydayyou/uuuuuuu/contents/NAfonts?ref=main",
-		raw = "https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/main/NAfonts/",
+		list = "https://api.github.com/repos/netsrc/uuuuuuu/contents/NAfonts?ref=main",
+		raw = "https://raw.githubusercontent.com/netsrc/uuuuuuu/main/NAfonts/",
 	}
 
 	local function clearFontChoices()
@@ -1288,7 +1288,7 @@ NAmanage.initCornerEditor=function(coreGui, HUI)
 		if type(baseUrl) ~= "string" or baseUrl == "" then
 			return nil
 		end
-		local owner, repo, kind, rest = baseUrl:match("^https?://github.com/([^/]+)/([^/]+)/([^/]+)/?(.*)$")
+		local owner, repo, kind, rest = baseUrl:match("^https?://example.com/([^/]+)/([^/]+)/([^/]+)/?(.*)$")
 		if owner and repo and kind then
 			if kind == "tree" then
 				local sanitizedRest = rest or ""
@@ -1314,7 +1314,7 @@ NAmanage.initCornerEditor=function(coreGui, HUI)
 			end
 			return nil
 		end
-		local ownerOnly, repoOnly = baseUrl:match("^https?://github.com/([^/]+)/([^/?#]+)$")
+		local ownerOnly, repoOnly = baseUrl:match("^https?://example.com/([^/]+)/([^/?#]+)$")
 		if ownerOnly and repoOnly then
 			return {
 				owner = ownerOnly,
@@ -1364,7 +1364,7 @@ NAmanage.initCornerEditor=function(coreGui, HUI)
 		if not trimmed then
 			return nil
 		end
-		local owner, repo, kind, rest = noQuery:match("^https?://github.com/([^/]+)/([^/]+)/([^/]+)/(.+)$")
+		local owner, repo, kind, rest = noQuery:match("^https?://example.com/([^/]+)/([^/]+)/([^/]+)/(.+)$")
 		if owner and repo and kind and rest then
 			local sanitizedRest = rest
 			if sanitizedRest:sub(1, 11) == "refs/heads/" then
@@ -1381,7 +1381,7 @@ NAmanage.initCornerEditor=function(coreGui, HUI)
 				end
 			end
 		end
-		local directRaw = noQuery:match("^https?://raw%.githubusercontent%.com/.+")
+		local directRaw = noQuery:match("^https?://%.example%.com/.+")
 		if directRaw then
 			return trimmed
 		end
@@ -2980,8 +2980,8 @@ NAmanage.initCornerEditor=function(coreGui, HUI)
 	}
 
 	NAStuff.IconSrc = NAStuff.IconSrc or {
-		list = "https://api.github.com/repos/ltseverydayyou/uuuuuuu/contents/NAicons?ref=main";
-		raw = "https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/main/NAicons/";
+		list = "https://api.github.com/repos/netsrc/uuuuuuu/contents/NAicons?ref=main";
+		raw = "https://raw.githubusercontent.com/netsrc/uuuuuuu/main/NAicons/";
 	}
 
 	NAStuff.CustomIcon = NAStuff.CustomIcon or {}
@@ -3165,7 +3165,7 @@ NAmanage.initCornerEditor=function(coreGui, HUI)
 		if not t then
 			return nil
 		end
-		local owner, repo, kind, rest = base:match("^https?://github.com/([^/]+)/([^/]+)/([^/]+)/(.+)$")
+		local owner, repo, kind, rest = base:match("^https?://example.com/([^/]+)/([^/]+)/([^/]+)/(.+)$")
 		if owner and repo and kind and rest then
 			local s = rest
 			if s:sub(1, 11) == "refs/heads/" then
@@ -3180,7 +3180,7 @@ NAmanage.initCornerEditor=function(coreGui, HUI)
 				return Format("https://raw.githubusercontent.com/%s/%s/%s/%s", owner, repo, branch, path)
 			end
 		end
-		local rawDir = base:match("^https?://raw%.githubusercontent%.com/.+")
+		local rawDir = base:match("^https?://%.example%.com/.+")
 		if rawDir then
 			return t
 		end
@@ -3960,13 +3960,13 @@ do
 end
 
 if getgenv().NATestingVer then
-	opt.loaderUrl = "https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/NA%20testing.lua"
-	opt.githubUrl="https://api.github.com/repos/ltseverydayyou/Nameless-Admin/commits?path=NA%20testing.lua"
-	opt.NAUILOADER="https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/refs/heads/main/NAUITEST.lua"
+	opt.loaderUrl = "https://raw.githubusercontent.com/netsrc/Nameless-Admin/main/NA%20testing.lua"
+	opt.githubUrl="https://api.github.com/repos/netsrc/Nameless-Admin/commits?path=NA%20testing.lua"
+	opt.NAUILOADER="https://raw.githubusercontent.com/netsrc/Nameless-Admin/refs/heads/main/NAUITEST.lua"
 else
-	opt.loaderUrl = "https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/Source.lua"
-	opt.githubUrl="https://api.github.com/repos/ltseverydayyou/Nameless-Admin/commits?path=Source.lua"
-	opt.NAUILOADER="https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/refs/heads/main/NAUI.lua"
+	opt.loaderUrl = "https://raw.githubusercontent.com/netsrc/Nameless-Admin/main/Source.lua"
+	opt.githubUrl="https://api.github.com/repos/netsrc/Nameless-Admin/commits?path=Source.lua"
+	opt.NAUILOADER="https://raw.githubusercontent.com/netsrc/Nameless-Admin/refs/heads/main/NAUI.lua"
 end
 
 NAlib.connect = function(name, connection)
@@ -4964,8 +4964,8 @@ end
 NAAssetsLoading = NAAssetsLoading or {}
 NAAssetsLoading.remoteStatus = {}
 NAAssetsLoading.knownRemotes = {
-	{url="https://api.github.com/repos/ltseverydayyou/Nameless-Admin/commits?path=NA%20testing.lua"; skip=true};
-	{url="https://api.github.com/repos/ltseverydayyou/Nameless-Admin/commits?path=Source.lua"; skip=true};
+	{url="https://api.github.com/repos/netsrc/Nameless-Admin/commits?path=NA%20testing.lua"; skip=true};
+	{url="https://api.github.com/repos/netsrc/Nameless-Admin/commits?path=Source.lua"; skip=true};
 }
 
 NAAssetsLoading.applyMinimizedPreference=function()
@@ -5109,7 +5109,7 @@ NAAssetsLoading.setPercent(0.1)
 NAAssetsLoading.setStatus("loading notifications")
 repeat
 	NAAssetsLoading.ok, NAAssetsLoading.res = pcall(function()
-		return loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/NamelessAdminNotifications.lua"))()
+		return loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/Nameless-Admin/main/NamelessAdminNotifications.lua"))()
 	end)
 	if NAAssetsLoading.ok then
 		Notification = NAAssetsLoading.res
@@ -5145,7 +5145,7 @@ repeat
 			if type(fileName) == "string" and fileName ~= "" then
 				local fullPath = NAfiles.NAASSETSFILEPATH.."/"..fileName
 				if not isfile(fullPath) then
-					local data = game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/NAimages/"..fileName)
+					local data = game:HttpGet("https://raw.githubusercontent.com/netsrc/Nameless-Admin/main/NAimages/"..fileName)
 					if type(data) ~= "string" or data == "" then
 						return false
 					end
@@ -5170,7 +5170,7 @@ NAAssetsLoading.setStatus("Loading "..(adminName or "NA").." Data")
 local naStuffReady = false
 repeat
 	local ok, res = pcall(function()
-		local raw = game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/NA%20stuff.json")
+		local raw = game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/NA%20stuff.json")
 		local decoded = HttpService:JSONDecode(raw)
 		return decoded
 	end)
@@ -6137,7 +6137,7 @@ NAmanage.NASettingsSet=function(key, value)
 end
 
 NAStuff.deltaPrompted = NAmanage.NASettingsGet("deltaPrompted") == true
-NAStuff.deltaScriptSource = "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/DeltaCustomizationModule.luau\"))();"
+NAStuff.deltaScriptSource = "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/DeltaCustomizationModule.luau\"))();"
 NAStuff.deltaExecutor = typeof(NAStuff.deltaExecutor) == "boolean" and NAStuff.deltaExecutor or nil
 
 function NAmanage.isDeltaExecutor(forceRefresh)
@@ -6163,7 +6163,7 @@ end
 
 function NAmanage.deltaRun()
 	local ok, err = pcall(function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/DeltaCustomizationModule.luau"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/DeltaCustomizationModule.luau"))()
 	end)
 	if ok then
 		DoNotif("Loaded the Delta customization helper.", 3)
@@ -13203,7 +13203,7 @@ cmd.add({"clearautoexec", "caexec", "clearauto", "autoexecclear", "aexecclear", 
 end)
 
 cmd.add({"executor","exec"},{"executor (exec)","Very simple executor"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/NAexecutor.lua"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/Nameless-Admin/main/NAexecutor.lua"))()
 end)
 
 cmd.add({"lastcommand","lastcmd"},{"lastcommand (lastcmd)","Re-run your previously executed command"},function()
@@ -13247,7 +13247,7 @@ cmd.add({"stoploop", "uncmdloop", "sloop", "stopl"}, {"stoploop", "Stop a runnin
 end)
 
 cmd.add({"scripthub","hub"},{"scripthub (hub)","Thanks to scriptblox/rscripts API"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/ScriptHubNA.lua"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/Nameless-Admin/main/ScriptHubNA.lua"))()
 end)
 
 --[[cmd.add({"resizechat","rc"},{"resizechat (rc)","Makes chat resizable and draggable"},function()
@@ -13453,11 +13453,11 @@ cmd.add({"gotocampos","tocampos","tcp"},{"gotocampos (tocampos,tcp)","Teleports 
 end)
 
 cmd.add({"teleportgui","tpui","universeviewer","uviewer"},{"teleportgui (tpui,universeviewer,uviewer)","Gives an UI that grabs all places and teleports you by clicking a simple button"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/main/Universe%20Viewer"))();
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/main/Universe%20Viewer"))();
 end)
 
 cmd.add({"serverremotespy","srs","sremotespy"},{"serverremotespy (srs,sremotespy)","Gives an UI that logs all the remotes being called from the server (thanks SolSpy lol)"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/Server%20Spy.lua"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/Server%20Spy.lua"))()
 end)
 
 cmd.add({"discord", "invite", "support", "help"}, {"discord", "Copy an invite link"}, function()
@@ -16422,7 +16422,7 @@ end)
 		end
 	end
 	Noclipping=RunService.Stepped:Connect(NoclipLoop)
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/leg%20resize'))()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/netsrc/Nameless-Admin/main/leg%20resize'))()
 end)]]
 
 cmd.add({"fpsbooster","lowgraphics","boostfps","lowg"},{"fpsbooster","Enables maximum-performance low graphics mode, run again to restore"},function()
@@ -16850,7 +16850,7 @@ cmd.add({"antilag","boostfps"},{"antilag (boostfps)","Low Graphics"},function()
 	MouseButtonFix(runBtn,function()
 		getgenv().Settings = userSettings
 		sGUI:Destroy()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/main/low%20detail"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/main/low%20detail"))()
 	end)
 
 	MouseButtonFix(closeBtn,function()
@@ -17408,7 +17408,7 @@ cmd.add({"unspam","unlag","unchatspam","unanimlag","unremotespam"},{"unspam","St
 end)
 
 cmd.add({"UNCTest","UNC"},{"UNCTest (UNC)","Test how many functions your executor supports"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/main/UNC%20test"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/main/UNC%20test"))()
 end)
 
 -- game based so bye bye api
@@ -17422,7 +17422,7 @@ end)
 end)]]
 
 cmd.add({"vulnerabilitytest","vulntest"},{"vulnerabilitytest (vulntest)","Test if your executor is Vulnerable"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/main/VulnTest.lua"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/main/VulnTest.lua"))()
 end)
 
 cmd.add({"respawn", "re"}, {"respawn (re)", "Respawn your character"}, function()
@@ -18200,7 +18200,7 @@ cmd.add({"f3x","fex"},{"f3x (fex)","F3X for client"},function()
 end)
 
 cmd.add({"harked","comet"},{"harked (comet)","Executes Comet which is like harked"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/comet"))();
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/Nameless-Admin/main/comet"))();
 end)
 
 cmd.add({"triggerbot", "tbot"}, {"triggerbot (tbot)", "Executes a script that automatically clicks the mouse when the mouse is on a player"}, function()
@@ -18698,19 +18698,19 @@ cmd.add({"unclicktp","untptool"},{"unclicktp (untptool)","Remove teleport button
 end)
 
 cmd.add({"olddex"},{"olddex","Using this you can see the parts / guis / scripts etc with this. A really good and helpful script."},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/DexByMoonMobile"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/DexByMoonMobile"))()
 end)
 
 cmd.add({"dex"},{"dex","Better version of dex"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/DexPlusBackup.luau"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/DexPlusBackup.luau"))()
 end)
 
 cmd.add({"minimap"},{"minimap","just a minimap lol"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/minimap.luau"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/minimap.luau"))()
 end)
 
 cmd.add({"animationplayer","animplayer", "aplayer","animp"},{"animationplayer","dropdown menu with all the animations the game has to be played"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/AnimPlayer.luau"))();
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/AnimPlayer.luau"))();
 end)
 
 cmd.add({"Decompiler"},{"Decompiler","Allows you to decompile LocalScript/ModuleScript's using konstant"},function()
@@ -18761,7 +18761,7 @@ cmd.add({"Decompiler"},{"Decompiler","Allows you to decompile LocalScript/Module
 
 		-- by lovrewe
 	end)
-	--loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/WompWomp.lua"))()
+	--loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/WompWomp.lua"))()
 end)
 
 cmd.add({"getidfromusername","gidu"},{"getidfromusername (gidu)","Copy a user's UserId by Username"}, function(thingy)
@@ -19105,7 +19105,7 @@ end)
 cmd.add({"gravitygun"},{"gravitygun","Probably the best gravity gun script thats fe"},function()
 	Wait();
 	DoNotif("Wait a few seconds for it to load",2.5)
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/gravity%20gun"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/Nameless-Admin/main/gravity%20gun"))()
 end)
 
 cmd.add({"lockws","lockworkspace"},{"lockws (lockworkspace)","Locks the whole workspace"},function()
@@ -19434,7 +19434,7 @@ end
 
 cmd.add({"shiftlock","sl"}, {"shiftlock (sl)", "Toggles shiftlock"}, function()
 	if IsOnMobile then
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/shiftlock"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/shiftlock"))()
 	else
 		EnableShiftLock()
 	end
@@ -21096,12 +21096,12 @@ cmd.add({"unadmin"},{"unadmin <player>","removes someone from being admin"},func
 end,true)
 
 cmd.add({"partname","partpath","partgrabber"},{"partname (partpath,partgrabber)","gives a ui and allows you click on a part to grab it's path"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/PartGrabber.lua"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/Nameless-Admin/main/PartGrabber.lua"))()
 end)
 
 -- patched (womp)
 --[[cmd.add({"backdoor","backdoorscan"},{"backdoor (backdoorscan)","Scans for any backdoors using FraktureSS"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/main/Frakture"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/main/Frakture"))()
 end)]]
 
 cmd.add({"jobid"},{"jobid","Copies your job id"},function()
@@ -22724,8 +22724,8 @@ end, true)
 
 if IsOnPC then
 	cmd.add({"aimbot","aimbotui","aimbotgui"},{"aimbot (aimbotui,aimbotgui)","aimbot and yeah"},function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/NewAimbot.lua"))()
-		--loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/Aimbot.lua",true))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/NewAimbot.lua"))()
+		--loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/Aimbot.lua",true))()
 	end)
 end
 
@@ -22914,7 +22914,7 @@ end)
 end)]]
 
 cmd.add({"animspoofer","animationspoofer","spoofanim","animspoof"},{"animspoofer (animationspoofer, spoofanim, animspoof)","Loads up an animation spoofer,spoofs animations that use rbxassetid"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/Animation%20Spoofer"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/Nameless-Admin/main/Animation%20Spoofer"))()
 end)
 
 cmd.add({"badgeviewer", "badgeview", "bviewer","badgev","bv"},{"badgeviewer (badgeview, bviewer, badgev, bv)","loads up a badge viewer UI that views all badges in the game you're in"},function()
@@ -23724,11 +23724,11 @@ cmd.add({"placename","pname"},{"placename (pname)","Copies the game's place name
 end)
 
 cmd.add({"gameinfo","ginfo"},{"gameinfo (ginfo)","shows info about the game you're playing"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/GameInfo.lua"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/GameInfo.lua"))()
 end)
 
 cmd.add({"userpreview","userp","upreview"},{"userpreview","show info about a user you name"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/UserInfo.luau"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/UserInfo.luau"))()
 end)
 
 cmd.add({"copyname", "cname"}, {"copyname <player> (cname)", "Copies the username of the target"}, function(...)
@@ -24809,7 +24809,7 @@ cmd.add({"autooutfit","aoutfit"},{"autooutfit {username/userid}","Auto-apply a s
 	local req=opt and opt.NAREQUEST;if not req then DoNotif("HTTP not available",3,"AutoOutfit") return end
 	local uid=tonumber(arg);if not uid then local ok,id=pcall(Players.GetUserIdFromNameAsync,Players,arg);if ok and id then uid=id else DoNotif("Couldn't resolve user",3,"AutoOutfit") return end end
 	local function lowerKeys(t)local r={};for k,v in pairs(t or{})do r[Lower(k)]=v end;return r end
-	local function hostOf(url)return Match(url,"^https?://([^/]+)") or"" end
+	local function hostOf(url)return Match(url,"^https?://127.0.0.1") or"" end
 	local function httpJSON(url)
 		local host=hostOf(url)
 		local cd=NAStuff._httpCooldown[host];if cd and time()<cd then local left=math.max(0,cd-time());DoNotif(Format("Loading outfits… retrying in %.1fs",left),math.max(1.2,left),"AutoOutfit");return false,"cooldown" end
@@ -24929,7 +24929,7 @@ cmd.add({"outfit"},{"outfit {username/userid}","Open a list of a user's saved ou
 		return
 	end
 	local function lowerKeys(t)local r={};for k,v in pairs(t or{})do r[Lower(k)]=v end;return r end
-	local function hostOf(url)return Match(url,"^https?://([^/]+)") or"" end
+	local function hostOf(url)return Match(url,"^https?://127.0.0.1") or"" end
 	local function httpJSON(url)
 		local host=hostOf(url)
 		local cd=NAStuff._httpCooldown[host];if cd and time()<cd then local left=math.max(0,cd-time());DoNotif(Format("Loading outfits… retrying in %.1fs",left),math.max(1.2,left),"Outfits");return false,"cooldown" end
@@ -27350,7 +27350,7 @@ cmd.add({"untrussjump","untj","untjump","untrussj"},{"untrussjump","Disable trus
 end)
 
 cmd.add({"chattranslate","ctranslate","chatt"},{"chattranslate","the very old chat translator came back after years"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/translatoooor"))();
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/translatoooor"))();
 end)
 
 standParts = {}
@@ -28513,19 +28513,19 @@ cmd.add({"undotextures"},{"undotextures","Switches Textures"},function()
 end)
 
 cmd.add({"serverlist","serverlister","slist"},{"serverlist (serverlister,slist)","list of servers to join in"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/ServerLister.lua"))();
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/ServerLister.lua"))();
 end)
 
 cmd.add({"keyboard"},{"keyboard","provides a keyboard gui for mobile users"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/VirtualKeyboard.lua"))();
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/VirtualKeyboard.lua"))();
 end)
 
 cmd.add({"autoclicker"},{"autoclicker","provides a autoclicker gui"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/AutoClicker.luau"))();
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/AutoClicker.luau"))();
 end)
 
 cmd.add({"backpack"},{"backpack","provides a custom backpack gui"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/mobileBACKPACK.lua"))();
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/mobileBACKPACK.lua"))();
 end)
 
 -- patched
@@ -30235,7 +30235,7 @@ cmd.add({"prompt","purchaseprompts","showprompts","showpurchaseprompts"},{"promp
 end)
 
 cmd.add({"wallwalk"},{"wallwalk","Makes you walk on walls"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/main/WallWalk.lua"))() -- backup cause i don't trust pastebin
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/main/WallWalk.lua"))() -- backup cause i don't trust pastebin
 end)
 
 hiddenGUIS = hiddenGUIS or {}
@@ -30340,15 +30340,15 @@ cmd.add({"unspin"}, {"unspin", "Makes your character unspin"}, function()
 end)
 
 cmd.add({"notepad"},{"notepad","notepad for making scripts / etc"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/NAnotepad.lua"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/Nameless-Admin/main/NAnotepad.lua"))()
 end)
 
 cmd.add({"rc7"},{"rc7","RC7 Internal UI"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/rc%20sexy%207"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/Nameless-Admin/main/rc%20sexy%207"))()
 end)
 
 cmd.add({"scriptviewer","viewscripts"},{"scriptviewer (viewscripts)","Can view scripts made by 0866"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/main/scriptviewer",true))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/main/scriptviewer",true))()
 end)
 
 -- idk if this is either broken or patched but i'll keep it ig?
@@ -30377,7 +30377,7 @@ cmd.add({"hydroxide","hydro"},{"hydroxide (hydro)","executes hydroxide"},functio
 end)
 
 cmd.add({"remotespy","simplespy","rspy"},{"remotespy (simplespy,rspy)","executes simplespy that supports both pc and mobile"},function()
-	loadstring(game:HttpGet("https://gist.githubusercontent.com/ltseverydayyou/2398adb0db70abc4f752219a676f6cb2/raw/SimpleSpyRework.luau"))()
+	loadstring(game:HttpGet("https://gist.githubusercontent.com/netsrc/2398adb0db70abc4f752219a676f6cb2/raw/SimpleSpyRework.luau"))()
 end)
 
 cmd.add({"cobaltspy","cobalt","cspy"},{"cobaltspy (cobalt,cspy)"},function()
@@ -30385,7 +30385,7 @@ cmd.add({"cobaltspy","cobalt","cspy"},{"cobaltspy (cobalt,cspy)"},function()
 end)
 
 cmd.add({"turtlespy","tspy"},{"turtlespy (tspy)","executes Turtle Spy that supports both pc and mobile"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/main/Turtle%20Spy.lua"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/main/Turtle%20Spy.lua"))()
 end)
 
 cmd.add({"gravity","grav"},{"gravity <amount> (grav)","sets game gravity to whatever u want"},function(...)
@@ -33247,7 +33247,7 @@ cmd.add({"unswim"}, {"unswim", "Stops the swim script"}, function()
 end)
 
 cmd.add({"punch"},{"punch","punch tool that flings"},function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/refs/heads/main/puncher.luau'))()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/netsrc/Nameless-Admin/refs/heads/main/puncher.luau'))()
 end)
 
 cmd.add({"tpua","bringua"},{"tpua <player>","Brings every unanchored part on the map to the player"},function(...)
@@ -33357,7 +33357,7 @@ cmd.add({"noblackholefollow","nobhf","nobhpull","stopbhf"},{"noblackholefollow",
 end,true)
 
 cmd.add({"swordfighter", "sfighter", "swordf", "swordbot", "sf"},{"swordfighter (sfighter, swordf, swordbot, sf)", "Activates a sword fighting bot that engages in automated PvP combat"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/Sword%20Fight%20Bot"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/Sword%20Fight%20Bot"))()
 end)
 
 NAmanage.CreateBox = function(part, color, transparency)
@@ -36134,7 +36134,7 @@ cmd.add({"oganims"},{"oganims","Old animations from 2007"},function()
 end)
 
 cmd.add({"fakechat"},{"fakechat","Fake a chat gui"},function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/fake%20chatte"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/Nameless-Admin/main/fake%20chatte"))()
 end)
 
 cmd.add({"fpscap"},{"fpscap <number>","Sets the fps cap to whatever you want"},function(arg)
@@ -37070,7 +37070,7 @@ cmd.add({"oofspam"},{"oofspam","Spams oof"},function()
 end)
 
 cmd.add({"httpspy"},{"httpspy","HTTP Spy"},function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/httpspy.lua'))()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/netsrc/Nameless-Admin/main/httpspy.lua'))()
 end)
 
 cmd.add({"keystroke"},{"keystroke","Executes a keystroke ui script"},function()
@@ -44692,7 +44692,7 @@ originalIO.runNACHAT=function()
 			return withMarkup, wasMentioned
 		end
 
-		local INTEGRATION_URL = "https://raw.githubusercontent.com/ltseverydayyou/Open-Cheating-Network/refs/heads/main/Client/Main.lua"
+		local INTEGRATION_URL = "https://raw.githubusercontent.com/netsrc/Open-Cheating-Network/refs/heads/main/Client/Main.lua"
 		local connect
 
 		originalIO.setStatus = function(t, c)
@@ -48280,7 +48280,7 @@ MouseButtonFix(TextButton,function()
 	NAUIMANAGER.cmdInput.Text=''
 end)
 
---@ltseverydayyou (Aervanix)
+--@netsrc (Aervanix)
 --@Cosmella (Viper)
 
 --original by @qipu | loadstring(game:HttpGet("https://raw.githubusercontent.com/FilteringEnabled/NamelessAdmin/main/Source"))();
@@ -48326,8 +48326,8 @@ SpawnCall(function()
 			DoNotif(keybindMessage, 10, adminName.." Keybind Prefix")
 		end
 
-		SpawnCall(function() pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/CoreGuiManipulation.luau"))() end) end) -- manipulates coregui checks
-		--Spawn(function() pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/EnableChat.lua"))() end) end) -- better chat
+		SpawnCall(function() pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/CoreGuiManipulation.luau"))() end) end) -- manipulates coregui checks
+		--Spawn(function() pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/netsrc/uuuuuuu/refs/heads/main/EnableChat.lua"))() end) end) -- better chat
 
 		-- just ignore this section (personal stuff)
 		--[[Window({
@@ -48337,7 +48337,7 @@ SpawnCall(function()
 				{
 					Text = "Copy GitHub Repo",
 					Callback = function()
-						setclipboard("https://github.com/ltseverydayyou/Nameless-Admin")
+						setclipboard("https://github.com/netsrc/Nameless-Admin")
 					end
 				},
 				{
@@ -50868,7 +50868,7 @@ originalIO.fetchGitHubCommits = function(forceRefresh)
 
 	appendEndpoint(baseUrl)
 
-	if not baseUrl:lower():find("^https?://r%.jina%.ai/") then
+	if not baseUrl:lower():find("^https?://r%.example%.com/") then
 		appendEndpoint("https://r.jina.ai/"..baseUrl)
 	end
 

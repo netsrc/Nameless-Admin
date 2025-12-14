@@ -8,7 +8,7 @@ local function getImageAsset(fileName, fallback)
 	local assetsRoot = "Nameless-Admin"
 	local assetsFolder = assetsRoot .. "/Assets"
 	local assetPath = assetsFolder .. "/" .. fileName
-	local assetUrl = "https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/NAimages/" .. fileName
+	local assetUrl = "https://raw.githubusercontent.com/netsrc/Nameless-Admin/main/NAimages/" .. fileName
 
 	local function safeCall(fn, ...)
 		if type(fn) ~= "function" then
