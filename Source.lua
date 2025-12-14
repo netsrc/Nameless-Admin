@@ -12,7 +12,7 @@ local GSub = string.gsub;
 local Find = string.find;
 local Match = string.match;
 local Format = string.format;
-local Unpack = table.unpack;find . -type f -exec sed -i "s|https?://127.0.0.1|https://127.0.0.1|g" {} +
+local Unpack = table.unpack;
 local Insert = table.insert;
 local Spawn = task.spawn;
 local Delay = task.delay;
@@ -51296,3 +51296,4 @@ end)
 ╚═╝░░╚═╝╚═════╝░╚═╝░░░░░╚═╝╚═╝╚═╝░░╚══╝
 
 )]]
+
