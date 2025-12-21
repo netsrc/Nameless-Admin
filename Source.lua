@@ -1,3 +1,27 @@
+local function EAntiKick()
+    local getnamecallmethod = getnamecallmethod
+    local hookmetamethod = hookmetamethod
+    local newcclosure = newcclosure
+    local checkcaller = checkcaller
+
+    local Players = game:GetService("Players")
+    local LocalPlayer = Players.LocalPlayer
+
+    local OldNamecall
+    OldNamecall = hookmetamethod(game, "__namecall", newcclosure(function(self, ...)
+        local method = getnamecallmethod()
+
+        if not checkcaller()
+            and self == LocalPlayer
+            and method == "Kick" then
+            return
+        end
+
+        return OldNamecall(self, ...)
+    end))
+end
+EAntiKick()
+
 if getgenv().RealNamelessLoaded~=nil then return end
 pcall(function() getgenv().RealNamelessLoaded=true; getgenv().NATestingVer=false; getgenv().NAverify="POJDHOUIS"; end)
 
@@ -51296,4 +51320,5 @@ end)
 ╚═╝░░╚═╝╚═════╝░╚═╝░░░░░╚═╝╚═╝╚═╝░░╚══╝
 
 )]]
+
 
