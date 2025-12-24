@@ -1,4 +1,4 @@
-local function EAnti()
+local function EAnti() --im a big fat skid lol
    --// Cache
 
 local getgenv, getnamecallmethod, hookmetamethod, hookfunction, newcclosure, checkcaller, lower, gsub, match = getgenv, getnamecallmethod, hookmetamethod, hookfunction, newcclosure, checkcaller, string.lower, string.gsub, string.match
@@ -56,11 +56,11 @@ local OldNamecall; OldNamecall = hookmetamethod(game, "__namecall", newcclosure(
 	if ((getgenv().ED_AntiKick.CheckCaller and not checkcaller()) or true) and CompareInstances(self, LocalPlayer) and gsub(method, "^%l", string.upper) == "Kick" and ED_AntiKick.Enabled then
 		if CanCastToSTDString(message) then
 			if getgenv().ED_AntiKick.SendNotifications then
-				SetCore(StarterGui, "SendNotification", {
-					Title = "Exunys Developer - Anti-Kick",
-					Text = "Successfully intercepted an attempted kick.",
-					Icon = "rbxassetid://6238540373",
-					Duration = 2
+				--SetCore(StarterGui, "SendNotification", {
+					--Title = "Exunys Developer - Anti-Kick",
+					--Text = "Successfully intercepted an attempted kick.",
+					--Icon = "rbxassetid://6238540373",
+					--Duration = 2
 				})
 			end
 
@@ -78,10 +78,10 @@ local OldFunction; OldFunction = hookfunction(LocalPlayer.Kick, function(...)
 		if CanCastToSTDString(Message) then
 			if ED_AntiKick.SendNotifications then
 				SetCore(StarterGui, "SendNotification", {
-					Title = "Exunys Developer - Anti-Kick",
-					Text = "Successfully intercepted an attempted kick.",
-					Icon = "rbxassetid://6238540373",
-					Duration = 2
+					--Title = "Exunys Developer - Anti-Kick",
+					--Text = "Successfully intercepted an attempted kick.",
+					--Icon = "rbxassetid://6238540373",
+					--Duration = 2
 				})
 			end
 
@@ -51399,6 +51399,7 @@ end)
 ╚═╝░░╚═╝╚═════╝░╚═╝░░░░░╚═╝╚═╝╚═╝░░╚══╝
 
 )]]
+
 
 
 
